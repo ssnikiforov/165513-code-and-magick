@@ -71,7 +71,7 @@ var renderHeaderMessage = function (ctx, string) {
       ctx,
       textArr[i],
       CLOUD_X + CLOUD_WIDTH / 4,
-      CLOUD_Y + TEXT_HEIGHT * (i+1),
+      CLOUD_Y + TEXT_HEIGHT * (i + 1),
       CLOUD_FONT
     );
   }
