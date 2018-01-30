@@ -85,8 +85,7 @@ var renderResultsBar = function (ctx, names, times) {
     } else {
       ctx.fillStyle = getRandomRgbColor();
     }
-    ctx.fillRect(CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * (i), CLOUD_HEIGHT - (TEXT_HEIGHT + GAP) - (BAR_HEIGHT * roundedTimes[i]) / maxTime, COLUMN_WIDTH, (BAR_HEIGHT * roundedTimes[i]) / maxTime
-    );
+    ctx.fillRect(CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * (i), CLOUD_HEIGHT - (TEXT_HEIGHT + GAP) - (BAR_HEIGHT * roundedTimes[i]) / maxTime, COLUMN_WIDTH, (BAR_HEIGHT * roundedTimes[i]) / maxTime);
   }
 };
 
