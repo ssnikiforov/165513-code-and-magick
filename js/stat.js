@@ -12,7 +12,7 @@ var GAP = 10;
 var SHADOW_COLOR = 'rgba(0, 0 , 0, 0.7)';
 
 // results: text
-var HEADER_MESSAGE = "Ура вы победили!\nСписок результатов:";
+var HEADER_MESSAGE = 'Ура вы победили!\nСписок результатов:';
 var TEXT_HEIGHT = 16;
 var CLOUD_FONT = '16px PT Mono';
 
@@ -67,13 +67,7 @@ var renderHeaderMessage = function (ctx, string) {
   var textArr = string.split('\n');
 
   for (var i = 0, n = textArr.length; i < n; i++) {
-    renderText(
-      ctx,
-      textArr[i],
-      CLOUD_X + CLOUD_WIDTH / 4,
-      CLOUD_Y + TEXT_HEIGHT * (i + 1),
-      CLOUD_FONT
-    );
+    renderText(ctx, textArr[i], CLOUD_X + CLOUD_WIDTH / 4, CLOUD_Y + TEXT_HEIGHT * (i + 1), CLOUD_FONT);
   }
 };
 
@@ -82,30 +76,16 @@ var renderResultsBar = function (ctx, names, times) {
   var maxTime = getMaxElement(roundedTimes);
 
   for (var i = 0, n = roundedTimes.length; i < n; i++) {
-    renderText(
-      ctx,
-      roundedTimes[i],
-      CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i,
-      CLOUD_HEIGHT - BAR_HEIGHT - GAP * 2 - TEXT_HEIGHT
-    );
+    renderText(ctx, roundedTimes[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - BAR_HEIGHT - GAP * 2 - TEXT_HEIGHT);
 
-    renderText(
-      ctx,
-      names[i],
-      CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i,
-      CLOUD_HEIGHT - GAP
-    );
+    renderText(ctx, names[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - GAP);
 
     if (names[i] === CURRENT_PLAYER_STRING) {
-      ctx.fillStyle = YOUR_COLOR
+      ctx.fillStyle = YOUR_COLOR;
     } else {
       ctx.fillStyle = getRandomRgbColor();
     }
-    ctx.fillRect(
-      CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * (i),
-      CLOUD_HEIGHT - (TEXT_HEIGHT + GAP) - (BAR_HEIGHT * roundedTimes[i]) / maxTime,
-      COLUMN_WIDTH,
-      (BAR_HEIGHT * roundedTimes[i]) / maxTime
+    ctx.fillRect(CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * (i), CLOUD_HEIGHT - (TEXT_HEIGHT + GAP) - (BAR_HEIGHT * roundedTimes[i]) / maxTime, COLUMN_WIDTH, (BAR_HEIGHT * roundedTimes[i]) / maxTime
     );
   }
 };
