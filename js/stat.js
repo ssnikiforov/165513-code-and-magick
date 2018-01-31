@@ -1,7 +1,7 @@
 'use strict';
-
 // common
-var BYTE_SIZE = 256;
+var WHITE_COLOR = '#fff';
+var BLACK_COLOR = '#000';
 
 // clouds
 var CLOUD_WIDTH = 420;
@@ -24,32 +24,25 @@ var YOUR_COLOR = 'rgba(255, 0, 0, 1)';
 var CURRENT_PLAYER_STRING = 'Вы';
 
 var getPreparedTimes = function (times) {
-  var arr = [];
-  times.forEach(function (el) {
-    arr.push(Math.round(parseInt(el, 10)));
+  return times.map(function (time) {
+    return Math.round(time);
   });
-
-  return arr;
 };
 
-var getRandomRgbColor = function () {
-  var red = Math.floor(Math.random() * BYTE_SIZE);
-  var green = Math.floor(Math.random() * BYTE_SIZE);
-  var blue = Math.floor(Math.random() * BYTE_SIZE);
-
-  return 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+var getRandomBluishColor = function () {
+  return 'rgba(0, 0, 255, ' + Math.random() + ')';
 };
 
-var getMaxElement = function (arr) {
-  var maxElement = arr[0];
+var getMaxTime = function (arr) {
+  var maxTime = arr[0];
 
   for (var i = 0; i < arr.length; i++) {
-    if (arr[i] > maxElement) {
-      maxElement = arr[i];
+    if (arr[i] > maxTime) {
+      maxTime = arr[i];
     }
   }
 
-  return maxElement;
+  return maxTime;
 };
 
 var renderCloud = function (ctx, x, y, color) {
@@ -58,7 +51,7 @@ var renderCloud = function (ctx, x, y, color) {
 };
 
 var renderText = function (ctx, text, x, y) {
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = BLACK_COLOR;
   ctx.font = CLOUD_FONT;
   ctx.fillText(text, x, y);
 };
@@ -73,7 +66,7 @@ var renderHeaderMessage = function (ctx, string) {
 
 var renderResultsBar = function (ctx, names, times) {
   var roundedTimes = getPreparedTimes(times);
-  var maxTime = getMaxElement(roundedTimes);
+  var maxTime = getMaxTime(roundedTimes);
 
   for (var i = 0, n = roundedTimes.length; i < n; i++) {
     renderText(ctx, roundedTimes[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - BAR_HEIGHT - GAP * 2 - TEXT_HEIGHT);
@@ -83,7 +76,7 @@ var renderResultsBar = function (ctx, names, times) {
     if (names[i] === CURRENT_PLAYER_STRING) {
       ctx.fillStyle = YOUR_COLOR;
     } else {
-      ctx.fillStyle = getRandomRgbColor();
+      ctx.fillStyle = getRandomBluishColor();
     }
     ctx.fillRect(CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * (i), CLOUD_HEIGHT - (TEXT_HEIGHT + GAP) - (BAR_HEIGHT * roundedTimes[i]) / maxTime, COLUMN_WIDTH, (BAR_HEIGHT * roundedTimes[i]) / maxTime);
   }
@@ -91,9 +84,8 @@ var renderResultsBar = function (ctx, names, times) {
 
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, SHADOW_COLOR);
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
+  renderCloud(ctx, CLOUD_X, CLOUD_Y, WHITE_COLOR);
 
-  ctx.fillStyle = '#000';
   renderHeaderMessage(ctx, HEADER_MESSAGE);
 
   renderResultsBar(ctx, names, times);
