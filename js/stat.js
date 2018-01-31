@@ -69,7 +69,7 @@ var renderResultsBar = function (ctx, names, times) {
   var maxTime = getMaxTime(roundedTimes);
 
   for (var i = 0, n = roundedTimes.length; i < n; i++) {
-    renderText(ctx, roundedTimes[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - BAR_HEIGHT - GAP * 2 - TEXT_HEIGHT);
+    renderText(ctx, roundedTimes[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - GAP * 2 - TEXT_HEIGHT - (BAR_HEIGHT * roundedTimes[i]) / maxTime);
 
     renderText(ctx, names[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - GAP);
 
