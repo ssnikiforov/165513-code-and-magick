@@ -59,9 +59,9 @@ var renderText = function (ctx, text, x, y) {
 var renderHeaderMessage = function (ctx, string) {
   var textArr = string.split('\n');
 
-  for (var i = 0, n = textArr.length; i < n; i++) {
-    renderText(ctx, textArr[i], CLOUD_X + CLOUD_WIDTH / 4, CLOUD_Y + TEXT_HEIGHT * (i + 1), CLOUD_FONT);
-  }
+  textArr.forEach(function (substring, i) {
+    renderText(ctx, substring, CLOUD_X + TEXT_HEIGHT, CLOUD_Y + TEXT_HEIGHT * (i + 1) + TEXT_HEIGHT);
+  });
 };
 
 var renderResultsBar = function (ctx, names, times) {
