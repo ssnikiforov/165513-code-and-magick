@@ -53,11 +53,7 @@
     return Math.round(Math.random()) ? randomName + ' ' + randomSurname : randomSurname + ' ' + randomName;
   };
 
-  var getCoatColor = function (colors) {
-    return getRandomizedValue(colors);
-  };
-
-  var getEyesColor = function (colors) {
+  var getColor = function (colors) {
     return getRandomizedValue(colors);
   };
 
@@ -67,8 +63,8 @@
     for (var i = 0; i < numberOfWizards; i++) {
       var wizard = {
         name: getName(NAMES, SURNAMES),
-        coatColor: getCoatColor(COAT_COLORS),
-        eyesColor: getEyesColor(EYES_COLORS)
+        coatColor: getColor(COAT_COLORS),
+        eyesColor: getColor(EYES_COLORS)
       };
       wizards.push(wizard);
     }
