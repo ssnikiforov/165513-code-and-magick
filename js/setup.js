@@ -92,9 +92,9 @@
   var wizards = getWizards(NUMBER_OF_WIZARDS);
 
   for (var i = 0, n = wizards.length; i < n; i++) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
+    var wizardTemplate = similarWizardTemplate.cloneNode(true);
 
-    fragment.appendChild(renderWizard(wizards[i], wizardElement));
+    fragment.appendChild(renderWizard(wizards[i], wizardTemplate));
   }
 
   similarListElement.appendChild(fragment);
