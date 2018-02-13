@@ -40,6 +40,14 @@
     'green'
   ];
 
+  var FIREBALL_COLORS = [
+    '#ee4830',
+    '#30a8ee',
+    '#5ce6c0',
+    '#e848d5',
+    '#e6e848'
+  ];
+
   var NUMBER_OF_WIZARDS = 4;
 
   var ESC_KEYCODE = 27;
@@ -95,11 +103,17 @@
   userDialogClose.tabIndex = 0;
   userDialogNameInput.minLength = 2;
 
+  var setupPlayerWrap = document.querySelector('.setup-player');
+  var setupCoatEl = setupPlayerWrap.querySelector('.wizard-coat');
+  var setupEyesEl = setupPlayerWrap.querySelector('.wizard-eyes');
+  var setupFireballEl = setupPlayerWrap.querySelector('.setup-fireball-wrap');
+
   var openPopup = function () {
     userDialog.classList.remove('hidden');
     document.addEventListener('keydown', popupEscPressHandler);
     document.addEventListener('click', formButtonClickHandler);
     document.addEventListener('keydown', formButtonPressHandler);
+    setupCoatEl.addEventListener('click', setupCoatClickHandler);
   };
 
   var closePopup = function () {
@@ -108,6 +122,7 @@
       document.removeEventListener('keydown', popupEscPressHandler);
       document.removeEventListener('click', formButtonClickHandler);
       document.removeEventListener('keydown', formButtonPressHandler);
+      setupCoatEl.removeEventListener('click', setupCoatClickHandler);
     }
   };
 
@@ -115,21 +130,6 @@
     if (evt.keyCode === ESC_KEYCODE) {
       closePopup();
     }
-  };
-
-  var formButtonClickHandler = function () {
-    formButtonSetSubmitType();
-  };
-
-  var formButtonPressHandler = function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
-      formButtonSetSubmitType();
-    }
-  };
-
-  var formButtonSetSubmitType = function() {
-    var formButton = userDialog.querySelector('.setup-submit');
-    formButton.type = 'submit';
   };
 
   userDialogOpen.addEventListener('click', function () {
@@ -151,6 +151,29 @@
       closePopup();
     }
   });
+
+  var formButtonSetSubmitType = function () {
+    var formButton = userDialog.querySelector('.setup-submit');
+    formButton.type = 'submit';
+  };
+
+  var formButtonClickHandler = function () {
+    formButtonSetSubmitType();
+  };
+
+  var formButtonPressHandler = function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      formButtonSetSubmitType();
+    }
+  };
+
+  var setupCoatClickHandler = function () {
+    var newCoatColor = getColor(COAT_COLORS);
+    var coatColorInput = setupPlayerWrap.querySelector('input[name$="coat-color"]');
+
+    setupCoatEl.style.fill = newCoatColor;
+    coatColorInput.value = newCoatColor;
+  };
 
 
   var similarListElement = userDialog.querySelector('.setup-similar-list');
