@@ -199,7 +199,6 @@
     fireballColorInput.value = newFireballColor;
   };
 
-
   var similarListElement = userDialog.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
   var fragment = document.createDocumentFragment();
