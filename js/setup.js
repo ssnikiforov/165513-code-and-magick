@@ -89,7 +89,6 @@
   var userDialogOpen = document.querySelector('.setup-open');
   var userDialogIcon = userDialogOpen.querySelector('.setup-open-icon');
   var userDialogClose = userDialog.querySelector('.setup-close');
-  var formButton = userDialog.querySelector('.setup-submit');
 
   userDialogIcon.tabIndex = 0;
   userDialogClose.tabIndex = 0;
@@ -97,7 +96,8 @@
   var openPopup = function () {
     userDialog.classList.remove('hidden');
     document.addEventListener('keydown', popupEscPressHandler);
-    document.addEventListener('click', formButtonSubmitHandler);
+    document.addEventListener('click', formButtonClickHandler);
+    document.addEventListener('keydown', formButtonPressHandler);
   };
 
   var closePopup = function () {
@@ -113,8 +113,19 @@
     }
   };
 
-  var formButtonSubmitHandler = function () {
+  var formButtonClickHandler = function () {
+    formButtonSetSubmitType();
+  };
 
+  var formButtonPressHandler = function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      formButtonSetSubmitType();
+    }
+  };
+
+  var formButtonSetSubmitType = function() {
+    var formButton = userDialog.querySelector('.setup-submit');
+    formButton.type = 'submit';
   };
 
   userDialogOpen.addEventListener('click', function () {
