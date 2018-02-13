@@ -114,6 +114,7 @@
     document.addEventListener('click', formButtonClickHandler);
     document.addEventListener('keydown', formButtonPressHandler);
     setupCoatEl.addEventListener('click', setupCoatClickHandler);
+    setupEyesEl.addEventListener('click', setupEyesClickHandler);
   };
 
   var closePopup = function () {
@@ -123,6 +124,7 @@
       document.removeEventListener('click', formButtonClickHandler);
       document.removeEventListener('keydown', formButtonPressHandler);
       setupCoatEl.removeEventListener('click', setupCoatClickHandler);
+      setupEyesEl.removeEventListener('click', setupEyesClickHandler);
     }
   };
 
@@ -173,6 +175,14 @@
 
     setupCoatEl.style.fill = newCoatColor;
     coatColorInput.value = newCoatColor;
+  };
+
+  var setupEyesClickHandler = function () {
+    var newEyesColor = getColor(EYES_COLORS);
+    var eyesColorInput = setupPlayerWrap.querySelector('input[name$="eyes-color"]');
+
+    setupCoatEl.style.fill = newEyesColor;
+    eyesColorInput.value = newEyesColor;
   };
 
 
