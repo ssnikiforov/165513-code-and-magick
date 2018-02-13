@@ -104,6 +104,8 @@
     if (!document.activeElement.classList.contains('setup-user-name')) {
       userDialog.classList.add('hidden');
       document.removeEventListener('keydown', popupEscPressHandler);
+      document.removeEventListener('click', formButtonClickHandler);
+      document.removeEventListener('keydown', formButtonPressHandler);
     }
   };
 
