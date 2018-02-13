@@ -53,6 +53,8 @@
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
 
+  var SETUP_FORM_ACTION_PATH = 'https://js.dump.academy/code-and-magick';
+
   var getRandomizedValue = function (array) {
     return array[Math.floor(Math.random() * array.length)];
   };
@@ -96,12 +98,14 @@
   var userDialog = document.querySelector('.setup');
   var userDialogOpen = document.querySelector('.setup-open');
   var userDialogClose = userDialog.querySelector('.setup-close');
+  var userDialogForm = userDialog.querySelector('.setup-wizard-form');
   var userDialogIcon = userDialogOpen.querySelector('.setup-open-icon');
   var userDialogNameInput = userDialog.querySelector('.setup-user-name');
 
   userDialogIcon.tabIndex = 0;
   userDialogClose.tabIndex = 0;
   userDialogNameInput.minLength = 2;
+  userDialogForm.action = SETUP_FORM_ACTION_PATH;
 
   var setupPlayerWrap = document.querySelector('.setup-player');
   var setupCoatEl = setupPlayerWrap.querySelector('.wizard-coat');
