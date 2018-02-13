@@ -87,11 +87,13 @@
 
   var userDialog = document.querySelector('.setup');
   var userDialogOpen = document.querySelector('.setup-open');
-  var userDialogIcon = userDialogOpen.querySelector('.setup-open-icon');
   var userDialogClose = userDialog.querySelector('.setup-close');
+  var userDialogIcon = userDialogOpen.querySelector('.setup-open-icon');
+  var userDialogNameInput = userDialog.querySelector('.setup-user-name');
 
   userDialogIcon.tabIndex = 0;
   userDialogClose.tabIndex = 0;
+  userDialogNameInput.minLength = 2;
 
   var openPopup = function () {
     userDialog.classList.remove('hidden');
@@ -101,7 +103,7 @@
   };
 
   var closePopup = function () {
-    if (!document.activeElement.classList.contains('setup-user-name')) {
+    if (document.activeElement !== userDialogNameInput) {
       userDialog.classList.add('hidden');
       document.removeEventListener('keydown', popupEscPressHandler);
       document.removeEventListener('click', formButtonClickHandler);
