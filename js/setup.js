@@ -115,6 +115,7 @@
     document.addEventListener('keydown', formButtonPressHandler);
     setupCoatEl.addEventListener('click', setupCoatClickHandler);
     setupEyesEl.addEventListener('click', setupEyesClickHandler);
+    setupFireballEl.addEventListener('click', setupFireballClickHandler);
   };
 
   var closePopup = function () {
@@ -125,6 +126,7 @@
       document.removeEventListener('keydown', formButtonPressHandler);
       setupCoatEl.removeEventListener('click', setupCoatClickHandler);
       setupEyesEl.removeEventListener('click', setupEyesClickHandler);
+      setupFireballEl.removeEventListener('click', setupFireballClickHandler);
     }
   };
 
@@ -181,8 +183,16 @@
     var newEyesColor = getColor(EYES_COLORS);
     var eyesColorInput = setupPlayerWrap.querySelector('input[name$="eyes-color"]');
 
-    setupCoatEl.style.fill = newEyesColor;
+    setupEyesEl.style.fill = newEyesColor;
     eyesColorInput.value = newEyesColor;
+  };
+
+  var setupFireballClickHandler = function () {
+    var newFireballColor = getColor(FIREBALL_COLORS);
+    var fireballColorInput = setupPlayerWrap.querySelector('input[name$="fireball-color"]');
+
+    setupFireballEl.style.background = newFireballColor;
+    fireballColorInput.value = newFireballColor;
   };
 
 
