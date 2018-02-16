@@ -64,7 +64,7 @@
   <div class="demo"></div>
 
   <div class="setup-open">
-    <img src="./img/user-1.jpg" class="setup-open-icon">
+    <img src="./img/user-1.jpg" class="setup-open-icon" tabindex="0">
   </div>
 </header>
 
@@ -83,12 +83,12 @@
         </div>
         <label>
           <input type="text" name="username"
-                 maxlength="25" required
+                 minlength="2" maxlength="25" required
                  class="setup-user-name" value="Синий Пендальф"/>
         </label>
       </div>
 
-      <span class="setup-close">&times;</span>
+      <span class="setup-close" tabindex="0">&times;</span>
     </div>
 
 
@@ -212,10 +212,12 @@
 </script>
 <script src="js/util.js"></script>
 <script src="js/dialog.js"></script>
+<script src="js/dialogForm.js"></script>
+<script src="js/wizard.js"></script>
 <script src="js/similars.js"></script>
 <script src="js/setup.js"></script>
 <script src="js/stat.js"></script>
-<script src="js/game.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

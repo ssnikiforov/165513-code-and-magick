@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-  /***** -------------------- WIZARDS -------------------- *****/
   var NAMES = [
     'Иван',
     'Хуан Себастьян',
@@ -41,19 +40,11 @@
     'green'
   ];
 
-  var getRandomizedValue = function (array) {
-    return array[Math.floor(Math.random() * array.length)];
-  };
-
   var getName = function (names, surnames) {
-    var randomName = getRandomizedValue(names);
-    var randomSurname = getRandomizedValue(surnames);
+    var randomName = window.util.randomizeValue(names);
+    var randomSurname = window.util.randomizeValue(surnames);
 
     return Math.round(Math.random()) ? randomName + ' ' + randomSurname : randomSurname + ' ' + randomName;
-  };
-
-  var getColor = function (colors) {
-    return getRandomizedValue(colors);
   };
 
   window.getWizards = function (numberOfWizards) {
@@ -62,8 +53,8 @@
     for (var i = 0; i < numberOfWizards; i++) {
       var wizard = {
         name: getName(NAMES, SURNAMES),
-        coatColor: getColor(COAT_COLORS),
-        eyesColor: getColor(EYES_COLORS)
+        coatColor: window.util.randomizeColor(COAT_COLORS),
+        eyesColor: window.util.randomizeColor(EYES_COLORS)
       };
       wizards.push(wizard);
     }

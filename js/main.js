@@ -12,7 +12,7 @@
   for (var i = 0, n = wizards.length; i < n; i++) {
     var wizardTemplate = similarWizardTemplate.cloneNode(true);
 
-    fragment.appendChild(renderWizard(wizards[i], wizardTemplate));
+    fragment.appendChild(window.renderWizard(wizards[i], wizardTemplate));
   }
 
   similarListElement.appendChild(fragment);
