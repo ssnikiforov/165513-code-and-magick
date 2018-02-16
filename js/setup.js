@@ -7,7 +7,7 @@
   var setupFireballEl = setupPlayerWrap.querySelector('.setup-fireball-wrap');
 
   var setupCoatClickHandler = function () {
-    var newCoatColor = window.util.randomizeColor(window.wizards.coat.colors);
+    var newCoatColor = window.wizards.coatColor();
     var coatColorInput = setupPlayerWrap.querySelector('input[name$="coat-color"]');
 
     setupCoatEl.style.fill = newCoatColor;
@@ -15,7 +15,7 @@
   };
 
   var setupEyesClickHandler = function () {
-    var newEyesColor = window.util.randomizeColor(window.wizards.eyes.colors);
+    var newEyesColor = window.wizards.eyesColor();
     var eyesColorInput = setupPlayerWrap.querySelector('input[name$="eyes-color"]');
 
     setupEyesEl.style.fill = newEyesColor;
@@ -23,7 +23,7 @@
   };
 
   var setupFireballClickHandler = function () {
-    var newFireballColor = window.util.randomizeColor(window.wizards.fireball.colors);
+    var newFireballColor = window.wizards.fireballColor();
     var fireballColorInput = setupPlayerWrap.querySelector('input[name$="fireball-color"]');
 
     setupFireballEl.style.background = newFireballColor;

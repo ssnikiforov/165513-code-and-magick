@@ -48,51 +48,29 @@
     '#e6e848'
   ];
 
-  var getName = function (names, surnames) {
-    var randomName = window.util.randomizeValue(names);
-    var randomSurname = window.util.randomizeValue(surnames);
+  var getName = function () {
+    var randomName = window.util.randomizeValue(NAMES);
+    var randomSurname = window.util.randomizeValue(SURNAMES);
 
     return Math.round(Math.random()) ? randomName + ' ' + randomSurname : randomSurname + ' ' + randomName;
   };
 
-  var getWizards = function (numberOfWizards) {
-    var wizards = [];
-
-    for (var i = 0; i < numberOfWizards; i++) {
-      var wizard = {
-        name: getName(NAMES, SURNAMES),
-        coatColor: window.util.randomizeColor(COAT_COLORS),
-        eyesColor: window.util.randomizeColor(EYES_COLORS)
-      };
-      wizards.push(wizard);
-    }
-
-    return wizards;
+  var getCoatColor = function () {
+    return window.util.randomizeColor(COAT_COLORS);
   };
 
-  var renderWizard = function (wizard, template) {
-    var wizardElement = template.cloneNode(true);
+  var getEyesColor = function () {
+    return window.util.randomizeColor(EYES_COLORS);
+  };
 
-    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-
-    return wizardElement;
+  var getFireballColor = function () {
+    return window.util.randomizeColor(FIREBALL_COLORS);
   };
 
   window.wizards = {
-    names: NAMES,
-    surnames: SURNAMES,
-    coat: {
-      colors: COAT_COLORS
-    },
-    eyes: {
-      colors: EYES_COLORS
-    },
-    fireball: {
-      colors: FIREBALL_COLORS
-    },
-    getWizards: getWizards,
-    renderWizard: renderWizard
+    name: getName,
+    coatColor: getCoatColor,
+    eyesColor: getEyesColor,
+    fireballColor: getFireballColor
   }
 })();
