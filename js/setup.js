@@ -41,7 +41,7 @@
     },
     eyes: {
       addClickEventListener: function () {
-        return setupEyesEl.addEventListener('click', setupEyesClickHandler)
+        return setupEyesEl.addEventListener('click', setupEyesClickHandler);
       },
       removeClickEventListener: function () {
         return setupEyesEl.removeEventListener('click', setupEyesClickHandler);
@@ -49,7 +49,7 @@
     },
     fireball: {
       addClickEventListener: function () {
-        return setupFireballEl.addEventListener('click', setupFireballClickHandler)
+        return setupFireballEl.addEventListener('click', setupFireballClickHandler);
       },
       removeClickEventListener: function () {
         return setupFireballEl.removeEventListener('click', setupFireballClickHandler);

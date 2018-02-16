@@ -72,5 +72,5 @@
     coatColor: getCoatColor,
     eyesColor: getEyesColor,
     fireballColor: getFireballColor
-  }
+  };
 })();
