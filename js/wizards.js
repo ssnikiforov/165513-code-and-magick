@@ -87,10 +87,10 @@
       colors: COAT_COLORS
     },
     eyes: {
-      color: EYES_COLORS
+      colors: EYES_COLORS
     },
     fireball: {
-      color: FIREBALL_COLORS
+      colors: FIREBALL_COLORS
     },
     getWizards: getWizards,
     renderWizard: renderWizard
