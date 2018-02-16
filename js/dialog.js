@@ -10,13 +10,11 @@
   var openPopup = function () {
     userDialog.classList.remove('hidden');
     document.addEventListener('keydown', popupEscPressHandler);
-    /** move outside */
-    document.addEventListener('click', formButtonClickHandler);
-    document.addEventListener('keydown', formButtonPressHandler);
-    /** move outside */
-    // setupCoatEl.addEventListener('click', setupCoatClickHandler);
-    // setupEyesEl.addEventListener('click', setupEyesClickHandler);
-    // setupFireballEl.addEventListener('click', setupFireballClickHandler);
+    window.dialogForm.button.addClickEventListener();
+    window.dialogForm.button.addPressEventListener();
+    window.setup.coat.addClickEventListener();
+    window.setup.eyes.addClickEventListener();
+    window.setup.fireball.addClickEventListener();
   };
 
   userDialogOpen.addEventListener('click', function () {
@@ -33,13 +31,11 @@
     if (document.activeElement !== userDialogNameInput) {
       userDialog.classList.add('hidden');
       document.removeEventListener('keydown', popupEscPressHandler);
-      /** move outside */
-      document.removeEventListener('click', formButtonClickHandler);
-      document.removeEventListener('keydown', formButtonPressHandler);
-      /** move outside */
-      // setupCoatEl.removeEventListener('click', setupCoatClickHandler);
-      // setupEyesEl.removeEventListener('click', setupEyesClickHandler);
-      // setupFireballEl.removeEventListener('click', setupFireballClickHandler);
+      window.dialogForm.button.removeClickEventListener();
+      window.dialogForm.button.removePressEventListener();
+      window.setup.coat.removeClickEventListener();
+      window.setup.eyes.addClickEventListener();
+      window.setup.fireball.addClickEventListener();
     }
   };
 
