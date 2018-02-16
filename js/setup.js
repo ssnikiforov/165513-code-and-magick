@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  /***** -------------------- WIZARDS -------------------- *****/
   var NAMES = [
     'Иван',
     'Хуан Себастьян',
@@ -95,6 +96,7 @@
     return wizardElement;
   };
 
+  /***** -------------------- DIALOG -------------------- *****/
   var userDialog = document.querySelector('.setup');
   var userDialogOpen = document.querySelector('.setup-open');
   var userDialogClose = userDialog.querySelector('.setup-close');
