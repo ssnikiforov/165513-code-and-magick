@@ -56,7 +56,7 @@
     return getRandomizedValue(colors);
   };
 
-  var getWizards = function (numberOfWizards) {
+  window.getWizards = function (numberOfWizards) {
     var wizards = [];
 
     for (var i = 0; i < numberOfWizards; i++) {
@@ -71,7 +71,7 @@
     return wizards;
   };
 
-  var renderWizard = function (wizard, template) {
+  window.renderWizard = function (wizard, template) {
     var wizardElement = template.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
