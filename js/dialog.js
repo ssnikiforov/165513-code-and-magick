@@ -2,6 +2,7 @@
 
 (function () {
 
+  // popup
   var userDialog = document.querySelector('.setup');
   var userDialogOpen = document.querySelector('.setup-open');
   var userDialogClose = userDialog.querySelector('.setup-close');
@@ -10,8 +11,6 @@
   var openPopup = function () {
     userDialog.classList.remove('hidden');
     document.addEventListener('keydown', popupEscPressHandler);
-    window.dialogForm.button.addClickEventListener();
-    window.dialogForm.button.addPressEventListener();
     window.setup.coat.addClickEventListener();
     window.setup.eyes.addClickEventListener();
     window.setup.fireball.addClickEventListener();
@@ -21,8 +20,6 @@
     if (document.activeElement !== userDialogNameInput) {
       userDialog.classList.add('hidden');
       document.removeEventListener('keydown', popupEscPressHandler);
-      window.dialogForm.button.removeClickEventListener();
-      window.dialogForm.button.removePressEventListener();
       window.setup.coat.removeClickEventListener();
       window.setup.eyes.addClickEventListener();
       window.setup.fireball.addClickEventListener();
