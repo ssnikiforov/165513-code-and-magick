@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-
-  // popup
   var userDialog = document.querySelector('.setup');
   var userDialogOpen = document.querySelector('.setup-open');
   var userDialogClose = userDialog.querySelector('.setup-close');
@@ -39,7 +37,7 @@
   });
 
   userDialogClose.addEventListener('keydown', function (evt) {
-    window.util.isEscEvent(evt, closePopup);
+    window.util.isEnterEvent(evt, closePopup);
   });
 
   window.userDialog = userDialog;
