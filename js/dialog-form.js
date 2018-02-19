@@ -11,9 +11,7 @@
   };
 
   var formButtonPressHandler = function (evt) {
-    if (evt.keyCode === window.util.keyCode.enter) {
-      formButtonSetSubmitType();
-    }
+    window.util.isEnterEvent(evt, formButtonSetSubmitType);
   };
 
   window.dialogForm = {

@@ -17,16 +17,6 @@
     window.setup.fireball.addClickEventListener();
   };
 
-  userDialogOpen.addEventListener('click', function () {
-    openPopup();
-  });
-
-  userDialogOpen.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.util.keyCode.enter) {
-      openPopup();
-    }
-  });
-
   var closePopup = function () {
     if (document.activeElement !== userDialogNameInput) {
       userDialog.classList.add('hidden');
@@ -40,19 +30,23 @@
   };
 
   var popupEscPressHandler = function (evt) {
-    if (evt.keyCode === window.util.keyCode.esc) {
-      closePopup();
-    }
+    window.util.isEscEvent(evt, closePopup);
   };
+
+  userDialogOpen.addEventListener('click', function () {
+    openPopup();
+  });
+
+  userDialogOpen.addEventListener('keydown', function (evt) {
+    window.util.isEnterEvent(evt, openPopup);
+  });
 
   userDialogClose.addEventListener('click', function () {
     closePopup();
   });
 
   userDialogClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === window.util.keyCode.enter) {
-      closePopup();
-    }
+    window.util.isEscEvent(evt, closePopup);
   });
 
   window.userDialog = userDialog;
