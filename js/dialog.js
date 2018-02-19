@@ -30,17 +30,23 @@
 
   var closePopup = function () {
     if (document.activeElement !== userDialogNameInput) {
-      var shopElement = window.dialogDragAndDrop.shopElement;
+      var dialogHandler = userDialog.querySelector('.upload');
+      var artifactsElement = document.querySelector('.setup-artifacts');
 
       userDialog.classList.add('hidden');
       userDialog.removeAttribute('style');
+
       document.removeEventListener('keydown', popupEscPressHandler);
       window.dialogForm.button.removeClickEventListener();
       window.dialogForm.button.removePressEventListener();
       window.setup.coat.removeClickEventListener();
-      window.setup.eyes.addClickEventListener();
-      window.setup.fireball.addClickEventListener();
-      // shopElement.removeEventListener('mousedown', window.dialogDragAndDrop.mouseDownShopElementHandler)
+      window.setup.eyes.removeClickEventListener();
+      window.setup.fireball.removeClickEventListener();
+      dialogHandler.removeEventListener('mousedown', window.dialogHandlers.dialogHandler.mouseDownDialogHandler);
+      artifactsElement.removeEventListener('dragend', window.dialogHandlers.artifacts.dragEnterArtifactElementHandler);
+      artifactsElement.removeEventListener('dragover', window.dialogHandlers.artifacts.dragOverArtifactElementHandler);
+      artifactsElement.removeEventListener('dragleave', window.dialogHandlers.artifacts.dragLeaveArtifactElementHandler);
+      artifactsElement.removeEventListener('drop', window.dialogHandlers.artifacts.dropArtifactElementHandler);
     }
   };
 

@@ -6,10 +6,7 @@
   var userDialog = window.userDialog;
   var dialogHandler = userDialog.querySelector('.upload');
 
-  var dialogMouseDownHandler = function () {
-
-  };
-  dialogHandler.addEventListener('mousedown', function (evt) {
+  var mouseDownDialogHandler = function (evt) {
     evt.preventDefault();
 
     var startCoords = {
@@ -44,8 +41,8 @@
       document.removeEventListener('mouseup', dialogMouseUpHandler);
 
       if (dragged) {
-        var clickPreventDefaultHandler = function (evt) {
-          evt.preventDefault();
+        var clickPreventDefaultHandler = function (clickEvt) {
+          clickEvt.preventDefault();
           dialogHandler.removeEventListener('click', clickPreventDefaultHandler);
         };
         dialogHandler.addEventListener('click', clickPreventDefaultHandler);
@@ -54,54 +51,79 @@
 
     document.addEventListener('mousemove', dialogMouseMoveHandler);
     document.addEventListener('mouseup', dialogMouseUpHandler);
-  });
+  };
+  dialogHandler.addEventListener('mousedown', mouseDownDialogHandler);
 
   // drag and drop artifacts
   var shopElement = document.querySelector('.setup-artifacts-shop');
   var draggedItem = null;
 
-  shopElement.addEventListener('dragstart', function (evt) {
+  var dragShopElementHandler = function (evt) {
     if (evt.target.tagName.toLowerCase() === 'img') {
       draggedItem = evt.target;
       evt.dataTransfer.setData('text/plain', evt.target.alt);
     }
-  });
+  };
+  shopElement.addEventListener('dragstart', dragShopElementHandler);
 
   var artifactsElement = document.querySelector('.setup-artifacts');
 
-  artifactsElement.addEventListener('dragover', function (evt) {
+  var dragOverArtifactElementHandler = function (evt) {
     evt.preventDefault();
     return false;
-  });
+  };
+  artifactsElement.addEventListener('dragover', dragOverArtifactElementHandler);
 
-  artifactsElement.addEventListener('drop', function (evt) {
+  var dropArtifactElementHandler = function (evt) {
     evt.target.style.backgroundColor = '';
     evt.target.appendChild(draggedItem);
     artifactsElement.style.removeProperty('outline');
+
+    shopElement.removeEventListener('dragstart', window.dialogHandlers.shopElement.dragStartShopElementHandler);
+    shopElement.removeEventListener('drag', window.dialogHandlers.shopElement.dragShopElementHandler);
+    shopElement.removeEventListener('dragend', window.dialogHandlers.shopElement.dragEndShopElementHandler);
+
     evt.preventDefault();
-  });
+  };
+  artifactsElement.addEventListener('drop', dropArtifactElementHandler);
 
-
-  artifactsElement.addEventListener('dragenter', function (evt) {
+  var dragEnterArtifactElementHandler = function (evt) {
     evt.target.style.backgroundColor = 'yellow';
     evt.preventDefault();
-  });
+  };
+  artifactsElement.addEventListener('dragenter', dragEnterArtifactElementHandler);
 
-  artifactsElement.addEventListener('dragleave', function (evt) {
+  var dragLeaveArtifactElementHandler = function (evt) {
     evt.target.style.backgroundColor = '';
     evt.preventDefault();
-  });
+  };
+  artifactsElement.addEventListener('dragleave', dragLeaveArtifactElementHandler);
 
-  shopElement.addEventListener('dragstart', function () {
+  var dragStartShopElementHandler = function () {
     artifactsElement.style.outline = '2px dashed red';
-  });
-  shopElement.addEventListener('dragend', function (evt) {
+  };
+  shopElement.addEventListener('dragstart', dragStartShopElementHandler);
+
+  var dragEndShopElementHandler = function (evt) {
     artifactsElement.style.removeProperty('outline');
     evt.preventDefault();
-  });
+  };
+  shopElement.addEventListener('dragend', dragEndShopElementHandler);
 
-  window.dialogDragAndDrop = {
-    shopElement: shopElement,
-    mouseDownShopElementHandler: mouseMoveShopElementHandler
+  window.dialogHandlers = {
+    dialogHandler: {
+      mouseDownDialogHandler: mouseDownDialogHandler,
+    },
+    shopElement: {
+      dragStartShopElementHandler: dragStartShopElementHandler,
+      dragShopElementHandler: dragShopElementHandler,
+      dragEndShopElementHandler: dragEndShopElementHandler
+    },
+    artifacts: {
+      dragEnterArtifactElementHandler: dragEnterArtifactElementHandler,
+      dragOverArtifactElementHandler: dragOverArtifactElementHandler,
+      dragLeaveArtifactElementHandler: dragLeaveArtifactElementHandler,
+      dropArtifactElementHandler: dropArtifactElementHandler
+    }
   };
 })();
