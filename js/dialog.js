@@ -9,6 +9,7 @@
 
   var openPopup = function () {
     userDialog.classList.remove('hidden');
+    userDialog.removeAttribute('style');
     document.addEventListener('keydown', popupEscPressHandler);
     window.dialogForm.button.addClickEventListener();
     window.dialogForm.button.addPressEventListener();
@@ -30,6 +31,7 @@
   var closePopup = function () {
     if (document.activeElement !== userDialogNameInput) {
       userDialog.classList.add('hidden');
+      userDialog.removeAttribute('style');
       document.removeEventListener('keydown', popupEscPressHandler);
       window.dialogForm.button.removeClickEventListener();
       window.dialogForm.button.removePressEventListener();
