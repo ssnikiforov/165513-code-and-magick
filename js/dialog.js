@@ -11,18 +11,14 @@
   var openPopup = function () {
     userDialog.classList.remove('hidden');
     document.addEventListener('keydown', popupEscPressHandler);
-    window.setup.coat.addClickEventListener();
-    window.setup.eyes.addClickEventListener();
-    window.setup.fireball.addClickEventListener();
+    window.setup.initWizardSetupEventListeners();
   };
 
   var closePopup = function () {
     if (document.activeElement !== userDialogNameInput) {
       userDialog.classList.add('hidden');
       document.removeEventListener('keydown', popupEscPressHandler);
-      window.setup.coat.removeClickEventListener();
-      window.setup.eyes.addClickEventListener();
-      window.setup.fireball.addClickEventListener();
+      window.setup.removeWizardSetupEventListeners();
     }
   };
 
