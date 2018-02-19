@@ -49,22 +49,22 @@
   ];
 
   var getName = function () {
-    var randomName = window.util.randomizeValue(NAMES);
-    var randomSurname = window.util.randomizeValue(SURNAMES);
+    var randomName = window.util.getRandomizedValue(NAMES);
+    var randomSurname = window.util.getRandomizedValue(SURNAMES);
 
     return Math.round(Math.random()) ? randomName + ' ' + randomSurname : randomSurname + ' ' + randomName;
   };
 
   var getCoatColor = function () {
-    return window.util.randomizeColor(COAT_COLORS);
+    return window.util.getRandomizedColor(COAT_COLORS);
   };
 
   var getEyesColor = function () {
-    return window.util.randomizeColor(EYES_COLORS);
+    return window.util.getRandomizedColor(EYES_COLORS);
   };
 
   var getFireballColor = function () {
-    return window.util.randomizeColor(FIREBALL_COLORS);
+    return window.util.getRandomizedColor(FIREBALL_COLORS);
   };
 
   window.wizards = {

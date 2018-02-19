@@ -30,30 +30,19 @@
     fireballColorInput.value = newFireballColor;
   };
 
+  var initWizardSetupEventListeners = function () {
+    setupCoatEl.addEventListener('click', setupCoatClickHandler);
+    setupEyesEl.addEventListener('click', setupEyesClickHandler);
+    setupFireballEl.addEventListener('click', setupFireballClickHandler);
+  };
+
+  var removeWizardSetupEventListeners = function () {
+    setupCoatEl.removeEventListener('click', setupCoatClickHandler);
+    setupEyesEl.removeEventListener('click', setupEyesClickHandler);
+    setupFireballEl.removeEventListener('click', setupFireballClickHandler);
+  };
   window.setup = {
-    coat: {
-      addClickEventListener: function () {
-        return setupCoatEl.addEventListener('click', setupCoatClickHandler);
-      },
-      removeClickEventListener: function () {
-        return setupCoatEl.removeEventListener('click', setupCoatClickHandler);
-      }
-    },
-    eyes: {
-      addClickEventListener: function () {
-        return setupEyesEl.addEventListener('click', setupEyesClickHandler);
-      },
-      removeClickEventListener: function () {
-        return setupEyesEl.removeEventListener('click', setupEyesClickHandler);
-      }
-    },
-    fireball: {
-      addClickEventListener: function () {
-        return setupFireballEl.addEventListener('click', setupFireballClickHandler);
-      },
-      removeClickEventListener: function () {
-        return setupFireballEl.removeEventListener('click', setupFireballClickHandler);
-      }
-    }
+    initWizardSetupEventListeners: initWizardSetupEventListeners,
+    removeWizardSetupEventListeners: removeWizardSetupEventListeners
   };
 })();
