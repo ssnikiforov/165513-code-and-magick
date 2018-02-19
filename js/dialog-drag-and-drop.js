@@ -6,6 +6,9 @@
   var userDialog = window.userDialog;
   var dialogHandler = userDialog.querySelector('.upload');
 
+  var dialogMouseDownHandler = function () {
+
+  };
   dialogHandler.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
@@ -16,7 +19,7 @@
 
     var dragged = false;
 
-    var onMouseMove = function (moveEvt) {
+    var dialogMouseMoveHandler = function (moveEvt) {
       moveEvt.preventDefault();
       dragged = true;
 
@@ -34,23 +37,23 @@
       userDialog.style.left = (userDialog.offsetLeft - shift.x) + 'px';
     };
 
-    var onMouseUp = function (upEvt) {
+    var dialogMouseUpHandler = function (upEvt) {
       upEvt.preventDefault();
 
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mousemove', dialogMouseMoveHandler);
+      document.removeEventListener('mouseup', dialogMouseUpHandler);
 
       if (dragged) {
-        var onClickPreventDefault = function (evt) {
+        var clickPreventDefaultHandler = function (evt) {
           evt.preventDefault();
-          dialogHandler.removeEventListener('click', onClickPreventDefault);
+          dialogHandler.removeEventListener('click', clickPreventDefaultHandler);
         };
-        dialogHandler.addEventListener('click', onClickPreventDefault);
+        dialogHandler.addEventListener('click', clickPreventDefaultHandler);
       }
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mousemove', dialogMouseMoveHandler);
+    document.addEventListener('mouseup', dialogMouseUpHandler);
   });
 
   // drag and drop artifacts
@@ -74,6 +77,7 @@
   artifactsElement.addEventListener('drop', function (evt) {
     evt.target.style.backgroundColor = '';
     evt.target.appendChild(draggedItem);
+    artifactsElement.style.removeProperty('outline');
     evt.preventDefault();
   });
 
@@ -87,4 +91,17 @@
     evt.target.style.backgroundColor = '';
     evt.preventDefault();
   });
+
+  shopElement.addEventListener('dragstart', function () {
+    artifactsElement.style.outline = '2px dashed red';
+  });
+  shopElement.addEventListener('dragend', function (evt) {
+    artifactsElement.style.removeProperty('outline');
+    evt.preventDefault();
+  });
+
+  window.dialogDragAndDrop = {
+    shopElement: shopElement,
+    mouseDownShopElementHandler: mouseMoveShopElementHandler
+  };
 })();

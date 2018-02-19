@@ -30,6 +30,8 @@
 
   var closePopup = function () {
     if (document.activeElement !== userDialogNameInput) {
+      var shopElement = window.dialogDragAndDrop.shopElement;
+
       userDialog.classList.add('hidden');
       userDialog.removeAttribute('style');
       document.removeEventListener('keydown', popupEscPressHandler);
@@ -38,6 +40,7 @@
       window.setup.coat.removeClickEventListener();
       window.setup.eyes.addClickEventListener();
       window.setup.fireball.addClickEventListener();
+      // shopElement.removeEventListener('mousedown', window.dialogDragAndDrop.mouseDownShopElementHandler)
     }
   };
 
