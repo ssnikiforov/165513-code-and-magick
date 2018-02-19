@@ -3,7 +3,7 @@
 (function () {
 
   // drag and drop userDialog
-  var userDialog = window.userDialog;
+  var userDialog = document.querySelector('.setup');
   var dialogHandler = userDialog.querySelector('.upload');
 
   var mouseDownDialogHandler = function (evt) {
@@ -79,9 +79,9 @@
     evt.target.appendChild(draggedItem);
     artifactsElement.style.removeProperty('outline');
 
-    shopElement.removeEventListener('dragstart', window.dialogHandlers.shopElement.dragStartShopElementHandler);
-    shopElement.removeEventListener('drag', window.dialogHandlers.shopElement.dragShopElementHandler);
-    shopElement.removeEventListener('dragend', window.dialogHandlers.shopElement.dragEndShopElementHandler);
+    shopElement.removeEventListener('dragstart', dragStartShopElementHandler);
+    shopElement.removeEventListener('drag', dragShopElementHandler);
+    shopElement.removeEventListener('dragend', dragEndShopElementHandler);
 
     evt.preventDefault();
   };
@@ -110,20 +110,15 @@
   };
   shopElement.addEventListener('dragend', dragEndShopElementHandler);
 
+  var removeDialogHandlers = function () {
+    dialogHandler.removeEventListener('mousedown', mouseDownDialogHandler);
+    artifactsElement.removeEventListener('dragend', dragEnterArtifactElementHandler);
+    artifactsElement.removeEventListener('dragover', dragOverArtifactElementHandler);
+    artifactsElement.removeEventListener('dragleave', dragLeaveArtifactElementHandler);
+    artifactsElement.removeEventListener('drop', dropArtifactElementHandler);
+  };
+
   window.dialogHandlers = {
-    dialogHandler: {
-      mouseDownDialogHandler: mouseDownDialogHandler,
-    },
-    shopElement: {
-      dragStartShopElementHandler: dragStartShopElementHandler,
-      dragShopElementHandler: dragShopElementHandler,
-      dragEndShopElementHandler: dragEndShopElementHandler
-    },
-    artifacts: {
-      dragEnterArtifactElementHandler: dragEnterArtifactElementHandler,
-      dragOverArtifactElementHandler: dragOverArtifactElementHandler,
-      dragLeaveArtifactElementHandler: dragLeaveArtifactElementHandler,
-      dropArtifactElementHandler: dropArtifactElementHandler
-    }
+    removeDialogHandlers: removeDialogHandlers
   };
 })();
