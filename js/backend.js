@@ -6,22 +6,22 @@
   var XHR_STATUS_OK = 200;
   var XHR_TIMEOUT = 10000;
 
-  var load = function (onLoad, onError) {
+  var load = function (loadHandler, errorHandler) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
       if (xhr.status === XHR_STATUS_OK) {
-        onLoad(xhr.response);
+        loadHandler(xhr.response);
       } else {
-        onError('Статус ответа: ' + xhr.status);
+        errorHandler('Статус ответа: ' + xhr.status);
       }
     });
     xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
+      errorHandler('Произошла ошибка соединения');
     });
     xhr.addEventListener('timeout', function () {
-      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+      errorHandler('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
     xhr.timeout = XHR_TIMEOUT;
@@ -30,19 +30,19 @@
     xhr.send();
   };
 
-  var save = function (data, onLoad, onError) {
+  var save = function (data, loadHandler, errorHandler) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
       if (xhr.status === XHR_STATUS_OK) {
-        onLoad(xhr.response);
+        loadHandler(xhr.response);
       } else {
-        onError('Статус ответа: ' + xhr.status);
+        errorHandler('Статус ответа: ' + xhr.status);
       }
     });
     xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
+      errorHandler('Произошла ошибка соединения');
     });
 
     xhr.open('POST', POST_URL);
