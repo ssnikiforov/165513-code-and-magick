@@ -8,7 +8,7 @@
 
   var setupCoatClickHandler = function () {
     var newCoatColor = window.wizards.coatColor();
-    var coatColorInput = setupPlayerWrap.querySelector('input[name$="coat-color"]');
+    var coatColorInput = setupPlayerWrap.querySelector('input[name="coat-color"]');
 
     setupCoatEl.style.fill = newCoatColor;
     coatColorInput.value = newCoatColor;
@@ -16,7 +16,7 @@
 
   var setupEyesClickHandler = function () {
     var newEyesColor = window.wizards.eyesColor();
-    var eyesColorInput = setupPlayerWrap.querySelector('input[name$="eyes-color"]');
+    var eyesColorInput = setupPlayerWrap.querySelector('input[name="eyes-color"]');
 
     setupEyesEl.style.fill = newEyesColor;
     eyesColorInput.value = newEyesColor;
@@ -24,7 +24,7 @@
 
   var setupFireballClickHandler = function () {
     var newFireballColor = window.wizards.fireballColor();
-    var fireballColorInput = setupPlayerWrap.querySelector('input[name$="fireball-color"]');
+    var fireballColorInput = setupPlayerWrap.querySelector('input[name="fireball-color"]');
 
     setupFireballEl.style.background = newFireballColor;
     fireballColorInput.value = newFireballColor;
