@@ -4,13 +4,15 @@
   var userDialog = document.querySelector('.setup');
   var userDialogOpen = document.querySelector('.setup-open');
   var userDialogClose = userDialog.querySelector('.setup-close');
-  var userDialogNameInput = userDialog.querySelector('.setup-user-name');
+  var userDialogForm = userDialog.querySelector('.setup-wizard-form');
+  var userDialogNameInput = userDialogForm.querySelector('.setup-user-name');
 
   var openPopup = function () {
     userDialog.classList.remove('hidden');
     userDialog.removeAttribute('style');
     document.addEventListener('keydown', popupEscPressHandler);
     window.setup.initWizardSetupEventListeners();
+    window.dialogHandlers.initDialogHandlers();
   };
 
   var closePopup = function () {
