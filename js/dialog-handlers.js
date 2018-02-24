@@ -104,37 +104,11 @@
   };
 
   // submit form
-  var successHandler = function () {
-    userDialog.classList.add('hidden');
-
-    var node = document.createElement('div');
-    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: green;';
-    node.style.position = 'absolute';
-    node.style.left = 0;
-    node.style.right = 0;
-    node.style.fontSize = '30px';
-
-    node.textContent = 'Данные были успешно отправлены';
-    document.body.insertAdjacentElement('afterbegin', node);
-  };
-
-  var errorHandler = function (errorMessage) {
-    var node = document.createElement('div');
-    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-    node.style.position = 'absolute';
-    node.style.left = 0;
-    node.style.right = 0;
-    node.style.fontSize = '30px';
-
-    node.textContent = errorMessage;
-    document.body.insertAdjacentElement('afterbegin', node);
-  };
-
   var submitFormHandler = function (evt) {
     evt.preventDefault();
 
     var formData = new FormData(userDialogForm);
-    window.backend.save(formData, successHandler, errorHandler);
+    window.backend.save(formData, window.util.successHandler, window.util.errorHandler);
   };
 
   // prepare handlers export
