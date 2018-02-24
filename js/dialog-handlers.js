@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-
   // drag and drop userDialog
   var userDialog = document.querySelector('.setup');
   var dialogHandler = userDialog.querySelector('.upload');
@@ -52,7 +51,6 @@
     document.addEventListener('mousemove', dialogMouseMoveHandler);
     document.addEventListener('mouseup', dialogMouseUpHandler);
   };
-  dialogHandler.addEventListener('mousedown', mouseDownDialogHandler);
 
   // drag and drop artifacts
   var shopElement = document.querySelector('.setup-artifacts-shop');
@@ -64,7 +62,6 @@
       evt.dataTransfer.setData('text/plain', evt.target.alt);
     }
   };
-  shopElement.addEventListener('dragstart', dragShopElementHandler);
 
   var artifactsElement = document.querySelector('.setup-artifacts');
 
@@ -85,33 +82,42 @@
 
     evt.preventDefault();
   };
-  artifactsElement.addEventListener('drop', dropArtifactElementHandler);
 
   var dragEnterArtifactElementHandler = function (evt) {
     evt.target.style.backgroundColor = 'yellow';
     evt.preventDefault();
   };
-  artifactsElement.addEventListener('dragenter', dragEnterArtifactElementHandler);
 
   var dragLeaveArtifactElementHandler = function (evt) {
     evt.target.style.backgroundColor = '';
     evt.preventDefault();
   };
-  artifactsElement.addEventListener('dragleave', dragLeaveArtifactElementHandler);
 
   var dragStartShopElementHandler = function () {
     artifactsElement.style.outline = '2px dashed red';
   };
-  shopElement.addEventListener('dragstart', dragStartShopElementHandler);
 
   var dragEndShopElementHandler = function (evt) {
     artifactsElement.style.removeProperty('outline');
     evt.preventDefault();
   };
-  shopElement.addEventListener('dragend', dragEndShopElementHandler);
 
+  // prepare handlers export
+  var initDialogHandlers = function () {
+    dialogHandler.addEventListener('mousedown', mouseDownDialogHandler);
+    shopElement.addEventListener('drag', dragShopElementHandler);
+    shopElement.addEventListener('dragstart', dragStartShopElementHandler);
+    shopElement.addEventListener('dragend', dragEndShopElementHandler);
+    artifactsElement.addEventListener('dragenter', dragEnterArtifactElementHandler);
+    artifactsElement.addEventListener('dragover', dragOverArtifactElementHandler);
+    artifactsElement.addEventListener('dragleave', dragLeaveArtifactElementHandler);
+    artifactsElement.addEventListener('drop', dropArtifactElementHandler);
+  };
   var removeDialogHandlers = function () {
     dialogHandler.removeEventListener('mousedown', mouseDownDialogHandler);
+    shopElement.addEventListener('drag', dragShopElementHandler);
+    shopElement.addEventListener('dragstart', dragStartShopElementHandler);
+    shopElement.addEventListener('dragend', dragEndShopElementHandler);
     artifactsElement.removeEventListener('dragend', dragEnterArtifactElementHandler);
     artifactsElement.removeEventListener('dragover', dragOverArtifactElementHandler);
     artifactsElement.removeEventListener('dragleave', dragLeaveArtifactElementHandler);
@@ -119,6 +125,7 @@
   };
 
   window.dialogHandlers = {
+    initDialogHandlers: initDialogHandlers,
     removeDialogHandlers: removeDialogHandlers
   };
 })();
