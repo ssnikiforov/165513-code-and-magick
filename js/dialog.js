@@ -39,6 +39,4 @@
   userDialogClose.addEventListener('keydown', function (evt) {
     window.util.isEnterEvent(evt, closePopup);
   });
-
-  window.userDialog = userDialog;
 })();

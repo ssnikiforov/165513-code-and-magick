@@ -39,7 +39,7 @@
     fragment.appendChild(renderWizard(wizards[i], wizardTemplate));
   }
 
-  var userDialog = window.userDialog;
+  var userDialog = document.querySelector('.setup');
   var similarListElement = userDialog.querySelector('.setup-similar-list');
   similarListElement.appendChild(fragment);
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
