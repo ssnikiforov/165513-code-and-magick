@@ -6,15 +6,15 @@
   var XHR_STATUS_OK = 200;
   var XHR_TIMEOUT = 10000;
 
-  var load = function (onSuccess, onError) {
+  var load = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
       if (xhr.status === XHR_STATUS_OK) {
-        onSuccess(xhr.response);
+        onLoad(xhr.response);
       } else {
-        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        onError('Статус ответа: ' + xhr.status);
       }
     });
     xhr.addEventListener('error', function () {
@@ -30,12 +30,19 @@
     xhr.send();
   };
 
-  var save = function (data, onSuccess) {
+  var save = function (data, onLoad, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      onSuccess(xhr.response);
+      if (xhr.status === XHR_STATUS_OK) {
+        onLoad(xhr.response);
+      } else {
+        onError('Статус ответа: ' + xhr.status);
+      }
+    });
+    xhr.addEventListener('error', function () {
+      onError('Произошла ошибка соединения');
     });
 
     xhr.open('POST', POST_URL);
