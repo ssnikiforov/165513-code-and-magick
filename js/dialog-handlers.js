@@ -4,6 +4,7 @@
   // drag and drop userDialog
   var userDialog = document.querySelector('.setup');
   var dialogHandler = userDialog.querySelector('.upload');
+  var userDialogForm = userDialog.querySelector('.setup-wizard-form');
 
   var mouseDownDialogHandler = function (evt) {
     evt.preventDefault();
@@ -102,6 +103,40 @@
     evt.preventDefault();
   };
 
+  // submit form
+  var successHandler = function () {
+    userDialog.classList.add('hidden');
+
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: green;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+
+    node.textContent = 'Данные были успешно отправлены';
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  var errorHandler = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
+  var submitFormHandler = function (evt) {
+    evt.preventDefault();
+
+    var formData = new FormData(userDialogForm);
+    window.backend.save(formData, successHandler, errorHandler);
+  };
+
   // prepare handlers export
   var initDialogHandlers = function () {
     dialogHandler.addEventListener('mousedown', mouseDownDialogHandler);
@@ -112,6 +147,7 @@
     artifactsElement.addEventListener('dragover', dragOverArtifactElementHandler);
     artifactsElement.addEventListener('dragleave', dragLeaveArtifactElementHandler);
     artifactsElement.addEventListener('drop', dropArtifactElementHandler);
+    userDialogForm.addEventListener('submit', submitFormHandler);
   };
   var removeDialogHandlers = function () {
     dialogHandler.removeEventListener('mousedown', mouseDownDialogHandler);
@@ -122,6 +158,7 @@
     artifactsElement.removeEventListener('dragover', dragOverArtifactElementHandler);
     artifactsElement.removeEventListener('dragleave', dragLeaveArtifactElementHandler);
     artifactsElement.removeEventListener('drop', dropArtifactElementHandler);
+    userDialogForm.removeEventListener('submit', submitFormHandler);
   };
 
   window.dialogHandlers = {
